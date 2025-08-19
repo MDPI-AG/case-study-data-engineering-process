@@ -42,9 +42,7 @@ a real email address.
 
 ```plaintext
 .
-├── data                         # Local storage for ingested data
-│   ├── raw                     # Raw dumps from API
-│   └── processed               # Cleaned/preprocessed files (if needed)
+├── data                         # .parquet file containing the different steps in the scholarly publishing process of individual manuscripts.                                     Each manuscript starts with 'submit manuscript' and should end with 'published'
 │
 ├── src                         # All Python source code
 │   ├── extract                 # Code to call APIs and fetch raw data
