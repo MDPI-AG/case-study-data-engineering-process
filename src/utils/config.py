@@ -16,7 +16,7 @@ class Config:
     """
 
     def __init__(self, config: Dict[str, str]):
-        self.api_endpoint = config.get("API_ENDPOINT", "")
+        self.parquet_file = config.get("PARQUET_FILE", "")
 
         self.db_host = config.get("DB_HOST", "localhost")
         self.db_port = int(config.get("DB_PORT", 5432))
@@ -35,8 +35,8 @@ class Config:
         Raises:
             ValueError: If any required configuration is missing or invalid.
         """
-        if not self.api_endpoint:
-            raise ValueError("API_ENDPOINT is required.")
+        if not self.parquet_file:
+            raise ValueError("PARQUET_FILE is required.")
         
         if not self.db_host:
             raise ValueError("DB_HOST is required.")

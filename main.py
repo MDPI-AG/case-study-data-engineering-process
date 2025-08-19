@@ -11,7 +11,7 @@ from datetime import datetime
 import pandas as pd
 
 config = Config(config={
-    "PARQUET_FILE": "./data/source/data.parquet",
+    "PARQUET_FILE": "./data/raw/data.parquet",
     "DB_HOST": "localhost",
     "DB_PORT": 5432,
     "DB_NAME": "my_database",

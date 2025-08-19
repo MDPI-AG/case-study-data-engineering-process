@@ -10,7 +10,7 @@ BUTTON TO CREATE YOUR OWN REPOSITORY.**
 
 ## Targeted Workflow
 
-Extract → Store raw → Preprocess → Load to PostgreSQL → Transform with dbt → Analyze
+Stored raw data (parquet) → Extract → Preprocess → Store processed data → Load to PostgreSQL → Transform with dbt → Analyze
 
 ## Getting Started
 
@@ -32,18 +32,38 @@ docker-compose up -d
 This will start a Postgres database on port 5432. You can access the database using
 any Postgres client.
 
-## Issues with CrossRef API
+## Data
 
-If you face any issues with accessing the CrossRef API, you can add `&mailto=your@email`
-into the URL. This way CrossRef assigns your API request to a prioritized pool. Use
-a real email address.
+The raw data contains an extract of event logs that ressembles our production system
+data (the data has been scrambled and any ressemblance to actual MDPI data is purely
+coincidental). Each process instance is identified by a `hash_key` that is unique
+for each manuscript. The event logs looks like the following:
+
+```json
+{
+  "hash_key": "00318206b58d24b8b53361ed3fa120a3",
+  "journal_name": "Applied Sciences",
+  "st": 1,
+  "et": "submit_manuscript",
+  "tm": 1728894511,
+  "timestamp": "2024-10-14T10:28:31"
+}
+```
+
+The data contains only traces of process instances that have been completed (i.e., from
+the start event `submit_manuscript` to the end event `publish_manuscript`). However, these
+events may not be unique in the data for a given manuscript_hash (there could be several
+instances of `submit_manuscript` or `publish_manuscript`). You may want to deduplicate
+the data before loading it into the database (using the earliest event for `submit_manuscript`
+and the latest event for `publish_manuscript`).
 
 ## Suggested Project Structure
 
 ```plaintext
 .
-├── data                         # Local storage for ingested data
-│   ├── raw                     # Raw dumps from API
+├── data                        # Local storage for ingested data
+│   ├── raw                     # Raw event logs as a Parquet file for ingestion
+│   │   └── data.parquet
 │   └── processed               # Cleaned/preprocessed files (if needed)
 │
 ├── src                         # All Python source code
