@@ -8,9 +8,10 @@ from src.load.loader import Loader
 
 import json
 from datetime import datetime
+import pandas as pd
 
 config = Config(config={
-    "API_ENDPOINT": "https://api.crossref.org/works?sort=published&order=desc&rows=200",
+    "PARQUET_FILE": "./data/source/data.parquet",
     "DB_HOST": "localhost",
     "DB_PORT": 5432,
     "DB_NAME": "my_database",
@@ -26,10 +27,7 @@ logger = setup_logger(
     level=config.log_level,
 )
 
-# API client for CrossRef works api endpoint
-extract = Extractor(config, logger)
-extract.fetch_and_save_data()
-raw_data = extract.extract_raw_data()
+#Load data from Parquet file
 
 normalizer = Normalizer()
 normalized_data = []
@@ -59,5 +57,5 @@ with open(filepath, "w") as f:
 loader = Loader(config, logger)
 loader.load_data(unique_data)
 
-# to do - setup dbt models and run some analysis, e.g. sum of reference_count is_referenced_by_count by journal and publisher
+# to do - setup dbt models and run some analysis, e.g. mean publication time, mean number of events per journal, most used path
 

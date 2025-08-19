@@ -79,14 +79,6 @@ a real email address.
 └── requirements.txt
 ```
 
-## Some Ideas for Todos
-
-- improve the fetching of raw data: loop a few pages of the API responses
-- improve the deduplicator logic: some items with different DOI's may belong together (e.g., a preprint and a journal article version of the same work)
-- start the dbt schema and sql models to run some analytics on the data, e.g., sum citations per year, or per journal, or per publisher
-- decompose the `main.py` entrypoints into distinct pipelines and use an orchestrator such as Airflow or Prefect
-- Dockerize the python app
-
 ## dbt
 
 If you are not familiar with dbt, you can check their [sandox project](https://github.com/dbt-labs/jaffle-shop/)
