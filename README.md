@@ -1,9 +1,9 @@
-# Case Study: Data Engineering
+# Case Study: Data Engineering (Process Mining)
 
 ---
 
 **⚠️ PLEASE DO NOT FORK THIS REPO AS OTHERS MAY SEE YOUR CODE. INSTEAD YOU CAN USE THE
-[USE THIS TEMPLATE](https://github.com/new?template_name=case-study-data-engineering&template_owner=MDPI-AG)
+[USE THIS TEMPLATE](https://github.com/new?template_name=case-study-data-engineering-process&template_owner=MDPI-AG)
 BUTTON TO CREATE YOUR OWN REPOSITORY.**
 
 ---
