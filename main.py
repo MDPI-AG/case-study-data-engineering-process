@@ -41,7 +41,7 @@ for item in raw_data:
 
 logger.info(f"Normalized {len(normalized_data)} items.")
 
-# Deduplicate the data
+# Deduplicate the data- is this the correct method? what are the correct fields to de-duplicate on?
 deduplicator = Deduplicator()
 unique_data = deduplicator.deduplicate(normalized_data)
 logger.info(f"Deduplicated data to {len(unique_data)} items.")
