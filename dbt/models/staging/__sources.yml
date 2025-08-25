@@ -1,0 +1,9 @@
+# version: 2
+
+# sources:
+#   - name: postgres
+#     schema: public
+#     description: Postgres data prepared for analytics
+#     tables:
+#       - name: test
+#         description: test source
